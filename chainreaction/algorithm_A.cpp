@@ -55,11 +55,24 @@ void algorithm_A(Board board, Player player, int index[]){
             }
     int a ;
     srand(time(NULL));
-    a=(rand()%4)+1;
+    a=(rand()%4);
     switch (a)
     {
-        case 1:
+        case 0:
         for(i = 0; i < ROW; i++)
+        for(j = 0; j < COL; j++)
+            {
+                if((board.get_cell_color(i, j) == player_color || board.get_cell_color(i, j) == 'w')&&(score[i][j]>Score))
+                {
+                    Score = score[i][j];
+                    row = i;
+                    col = j;
+                }
+            }
+        break;
+
+        case 1:
+        for(i = ROW; i > 0; i--)
         for(j = 0; j < COL; j++)
             {
                 if((board.get_cell_color(i, j) == player_color || board.get_cell_color(i, j) == 'w')&&(score[i][j]>Score))
@@ -73,19 +86,6 @@ void algorithm_A(Board board, Player player, int index[]){
 
         case 2:
         for(i = ROW; i > 0; i--)
-        for(j = 0; j < COL; j++)
-            {
-                if((board.get_cell_color(i, j) == player_color || board.get_cell_color(i, j) == 'w')&&(score[i][j]>Score))
-                {
-                    Score = score[i][j];
-                    row = i;
-                    col = j;
-                }
-            }
-        break;
-
-        case 3:
-        for(i = ROW; i > 0; i--)
         for(j = COL; j > 0; j--)
             {
                 if((board.get_cell_color(i, j) == player_color || board.get_cell_color(i, j) == 'w')
@@ -98,7 +98,7 @@ void algorithm_A(Board board, Player player, int index[]){
             } 
         break;
 
-        case 4:
+        case 3:
         for(i = 0; i < ROW; i++)
         for(j = COL; j > 0; j--)
             {
